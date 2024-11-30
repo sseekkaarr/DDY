@@ -1,0 +1,19 @@
+@import '@fontsource/montserrat/index.css';
+@import '@fontsource/lora/index.css';
+
+:root {
+  --primary-blue: #4e5ba6;
+  --secondary-blue: #6677d8;
+  --gradient-bg: linear-gradient(180deg, #363f72 0%, #6677d8 100%);
+  --red: #e84d4d;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', serif;
+}
