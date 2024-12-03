@@ -51,21 +51,21 @@ const Home = () => {
           <h2>Mindful Reads</h2>
           <div className={styles.articles}>
             <article>
-              <Image src="/img/Rectangle45.png" alt="Read 1" width={300} height={200} />
-              <h3>Excepteur sint occaecat...</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+              <Image src="/img/article1.png" alt="Read 1" width={300} height={200} />
+              <h3>The Power of Mindfulness: Simple Practices for Daily Peace</h3>
+              <p>Discover how mindfulness can transform your daily life. Learn easy practices to reduce stress, improve focus, and enhance overall well-being.</p>
               <button>Read more</button>
             </article>
             <article>
-              <Image src="/img/Rectangle46.png" alt="Read 2" width={300} height={200} />
-              <h3>Quis nostrum exercitationem...</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+              <Image src="/img/article2.png" alt="Read 2" width={300} height={200} />
+              <h3>Creative Outlets for Stress Relief: Why Art Matters</h3>
+              <p>Unleash your creativity to cope with stress. From painting to journaling, explore activities that help you relax and express yourself.</p>
               <button>Read more</button>
             </article>
             <article>
-              <Image src="/img/Rectangle47.png" alt="Read 3" width={300} height={200} />
-              <h3>Lorem ipsum dolor sit...</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+              <Image src="/img/article3-1.png" alt="Read 3" width={300} height={200} />
+              <h3>The Science of Self-Care: Why Rest is Productive</h3>
+              <p>Self-care is more than just a buzzword. Dive into the science behind rest and how it boosts your productivity and mental health.</p>
               <button>Read more</button>
             </article>
           </div>
@@ -74,7 +74,6 @@ const Home = () => {
         {/* Quiz Section */}
         <section className={styles.quiz}>
           <h2>Take our quick assessment to discover what works best for you!</h2>
-          {/* <button onClick={() => (window.location.href = '/quiz')}>Take the Quiz</button> */}
           <Link href="/quiz">
             <button>Take the Quiz</button>
           </Link>
