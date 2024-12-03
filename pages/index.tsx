@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef } from 'react';
 import styles from '../styles/Home.module.scss';
 import Header from '../components/Header';
@@ -73,7 +74,10 @@ const Home = () => {
         {/* Quiz Section */}
         <section className={styles.quiz}>
           <h2>Take our quick assessment to discover what works best for you!</h2>
-          <button onClick={() => (window.location.href = '/quiz')}>Take the Quiz</button>
+          {/* <button onClick={() => (window.location.href = '/quiz')}>Take the Quiz</button> */}
+          <Link href="/quiz">
+            <button>Take the Quiz</button>
+          </Link>
         </section>
       </main>
     </>
