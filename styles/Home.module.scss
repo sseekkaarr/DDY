@@ -1,4 +1,10 @@
 // Style untuk landing page
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .landing {
     display: flex;
     align-items: center;
@@ -19,6 +25,10 @@
         font-size: 3rem;
         font-family: "Montserrat", sans-serif;
         color: #000;
+
+        @media (max-width: 768px) {
+          font-size: 2rem;
+        }
       }
 
       p {
@@ -26,6 +36,10 @@
         font-size: 1.2rem;
         font-family: "Montserrat", sans-serif;
         color: #000;
+
+        @media (max-width: 768px) {
+          font-size: 1rem;
+        }
       }
 
       button {
@@ -44,9 +58,22 @@
       position: relative;
       width: 50%;
       height: 400px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+      }
     }
   }
+
+
   // Style untuk Features Overview
+  .section-container {
+    max-width: 1200px; 
+    margin: 0 auto;    
+    padding: 0 1rem;   
+  }
+
   .features {
     padding: 4rem 2rem;
   
@@ -54,18 +81,24 @@
       text-align: center;
       font-family: "Montserrat", sans-serif;
       font-size: 2.5rem;
+      margin-bottom: 2rem;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+
       animation: fadeIn 1s ease;
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
     }
   
     .featureCards {
@@ -73,6 +106,7 @@
       justify-content: center;
       align-items: center;
       gap: 2rem;
+      flex-wrap: wrap;
   
       .card {
         background-color: #fff;
@@ -80,7 +114,8 @@
         border-radius: 15px;
         padding: 2rem;
         text-align: center;
-        width: 300px; // Sesuaikan lebar kartu
+        width: 300px;
+        max-width: 100%;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s;
   
@@ -94,47 +129,75 @@
           color: #fff;
           border-color: #4e5ba6;
         }
+
+        @media (max-width: 768px) {
+          width: 100%; 
+          margin-bottom: 1rem;
+        }
   
         h3 {
           margin-top: 1rem;
           font-size: 1.5rem;
           font-family: "Montserrat", sans-serif;
+
+          @media (max-width: 768px) {
+            font-size: 1.2rem;
+          }
         }
   
         p {
           font-size: 1rem;
           margin-top: 0.5rem;
           font-family: "Lora", serif;
+
+          @media (max-width: 768px) {
+            font-size: 0.9rem;
+          }
         }
       }
     }
   }
   
+
   // Style untuk Mindful Reads
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;   
+    padding: 0 1rem;   
+  }
   .mindfulReads {
+    max-width: 1200px;
+    margin: 0 auto; 
     padding: 4rem 2rem;
+
     h2 {
       font-size: 2.5rem;
       text-align: center;
       font-family: "Montserrat", sans-serif;
       margin-bottom: 2rem;
 
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+
       animation: fadeIn 1s ease;
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
     }
     .articles {
       display: flex;
       gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
   
       article {
         background-color: #fff;
@@ -150,12 +213,31 @@
           transform: translateY(-10px);
           box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
+
+        @media (max-width: 1024px) {
+          width: 45%;
+        }
+  
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
+        img {
+          max-width: 100%; 
+          height: auto;   
+          border-radius: 10px 10px 0 0; 
+          object-fit: cover; 
+        }
   
         h3 {
           font-size: 1.2rem;
           margin: 1rem 0;
           color: #4e5ba6;
           font-family: "Montserrat", sans-serif;
+
+          @media (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
   
         p {
@@ -163,6 +245,10 @@
           color: #333;
           font-family: "Lora", serif;
           text-align: justify;
+
+          @media (max-width: 768px) {
+            font-size: 0.8rem;
+          }
         }
   
         button {
@@ -177,8 +263,15 @@
       }
     }
   }
+
   
   // Style untuk quiz section
+  .section-container {
+    max-width: 1200px; 
+    margin: 0 auto;    
+    padding: 0 1rem;   
+  }
+
   .quiz {
     text-align: center;
     padding: 3rem 2rem;
@@ -189,6 +282,10 @@
       font-size: 2rem;
       margin-bottom: 1.5rem;
       font-family: "Montserrat", sans-serif;
+
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
     }
   
     button {
@@ -199,6 +296,29 @@
       border-radius: 50px;
       cursor: pointer;
       font-size: 1rem;
+
+      @media (max-width: 768px) {
+        font-size: 0.9rem;
+      }
     }
   }
+
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 0 1rem; 
+  }
+  
+  .landing,
+  .features,
+  .mindfulReads,
+  .footer {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  
+  
   
