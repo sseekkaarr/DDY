@@ -1,0 +1,78 @@
+.authContainer {
+    display: flex;
+    height: 100vh;
+  
+    .leftSection,
+    .rightSection {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+  
+      h1, h2 {
+        margin: 0;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+      }
+    }
+  
+    .leftSection {
+      background: linear-gradient(0deg, #363f72, #6677d8, #3e4883);
+      color: white;
+  
+      h1 {
+        margin-bottom: 20px; /* Tambahkan jarak */
+        margin-top: 0; /* Pastikan tidak ada margin dari atas */
+      }
+  
+      img {
+        margin-top: 40px; /* Atur jarak logo */
+        cursor: pointer;
+      }
+    }
+  
+    .rightSection {
+      h2 {
+        margin-bottom: 20px; /* Pastikan jaraknya serupa dengan h1 di leftSection */
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+        gap: 20px;
+  
+        input {
+          padding: 15px;
+          border: 1px solid #a48765;
+          border-radius: 25px;
+          font-size: 14px;
+        }
+  
+        button {
+          background-color: #4e5ba6;
+          color: white;
+          padding: 15px;
+          border: none;
+          border-radius: 25px;
+          cursor: pointer;
+          font-size: 18px;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: bold;
+        }
+      }
+  
+      p {
+        margin-top: 20px;
+  
+        span {
+          color: #4e5ba6;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  

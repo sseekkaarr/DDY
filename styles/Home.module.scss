@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     background-image: url('/img/landing.png');
     background-size: cover;
     background-position: center;
@@ -46,7 +46,6 @@
       height: 400px;
     }
   }
-  
   // Style untuk Features Overview
   .features {
     padding: 4rem 2rem;
@@ -65,7 +64,7 @@
   
       .card {
         background-color: #fff;
-        border: 2px solid #ccc;
+        border: 1px solid #4e5ba6;
         border-radius: 15px;
         padding: 2rem;
         text-align: center;
@@ -100,6 +99,9 @@
   
   
   
+  
+  
+  
   // Style untuk Mindful Reads
   .mindfulReads {
     padding: 4rem 2rem;
@@ -115,7 +117,7 @@
   
       article {
         background-color: #fff;
-        // border: 1px solid #ccc;
+        border: 1px solid #ccc;
         border-radius: 10px;
         padding: 1rem;
         width: 30%;
