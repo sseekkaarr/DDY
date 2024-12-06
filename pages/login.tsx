@@ -1,7 +1,26 @@
+import { getSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/Auth.module.scss";
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (session) {
+    // Redirect ke halaman Profile jika sudah login
+    return {
+      redirect: {
+        destination: "/profile",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 const Login = () => {
   const router = useRouter();

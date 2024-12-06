@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import styles from '../styles/Header.module.scss';
 
 const Header = () => {
   const router = useRouter();
+  const { data: session } = useSession(); // Cek status login
 
   return (
     <header className={styles.header}>
@@ -25,8 +27,12 @@ const Header = () => {
         {/* Link ke halaman Activity Catalog */}
         <Link href="/activity-catalog">Activity Catalog</Link>
         
-        {/* Link ke halaman Login */}
-        <Link href="/login">Login</Link>
+         {/* Link ke Login atau Profile */}
+         {session ? (
+          <Link href="/profile">Profile</Link>
+        ) : (
+          <Link href="/login">Login</Link>
+        )}
       </nav>
     </header>
   );
