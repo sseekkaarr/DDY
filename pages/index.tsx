@@ -1,14 +1,28 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import styles from '../styles/Home.module.scss';
 import Header from '../components/Header';
 
 const Home = () => {
+  const { data: session } = useSession(); // Cek status login
+  const router = useRouter();
   const featuresRef = useRef<HTMLDivElement>(null);
 
   const scrollToFeatures = () => {
     featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleQuizRedirect = () => {
+    if (session) {
+      // Jika user sudah login, redirect ke halaman quiz
+      router.push("/quiz");
+    } else {
+      // Jika belum login, tampilkan alert
+      alert("Please log in to take the quiz.");
+    }
   };
 
   return (
@@ -74,9 +88,7 @@ const Home = () => {
         {/* Quiz Section */}
         <section className={styles.quiz}>
           <h2>Take our quick assessment to discover what works best for you!</h2>
-          <Link href="/quiz">
-            <button>Take the Quiz</button>
-          </Link>
+          <button onClick={handleQuizRedirect}>Take the Quiz</button>
         </section>
       </main>
     </>
