@@ -1,20 +1,46 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import styles from "../styles/Auth.module.scss";
 
 const Signup = () => {
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Default values
-    const name = "User";
-    const email = "user123@gmail.com";
-    const password = "user123";
+    const name = (e.target as any).name.value;
+    const email = (e.target as any).email.value;
+    const password = (e.target as any).password.value;
 
-    // You can replace this with actual backend logic later
-    alert(`Signed up as Name: ${name}, Email: ${email}, Password: ${password}`);
-    router.push("/login"); // Redirect to login page
+    // Validasi Input
+    if (!name || !email || !password) {
+      alert("All fields are required!");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    if (response.ok) {
+      alert("Signup successful! Redirecting to login...");
+      router.push("/login");
+    } else {
+      const error = await response.json();
+      alert("Signup failed: " + error.message);
+    }
   };
 
   return (
@@ -22,18 +48,24 @@ const Signup = () => {
       <div className={styles.leftSection}>
         <h1>Sign up to</h1>
         <h2>Daily Dose of You</h2>
-        <Image src="/img/logo.png" alt="Logo" width={370} height={370} onClick={() => router.push("/")} />
+        <Image
+          src="/img/logo.png"
+          alt="Logo"
+          width={370}
+          height={370}
+          onClick={() => router.push("/")}
+        />
       </div>
       <div className={styles.rightSection}>
         <h2>Create an Account</h2>
         <form onSubmit={handleSubmit}>
           <label>Name</label>
-          <input type="text" placeholder="Enter your name" />
+          <input name="name" type="text" placeholder="Enter your name" />
           <label>Email</label>
-          <input type="email" placeholder="Enter your email address" />
+          <input name="email" type="email" placeholder="Enter your email" />
           <label>Password</label>
-          <input type="password" placeholder="Enter your password" />
-          <button type="submit">Register</button>
+          <input name="password" type="password" placeholder="Enter your password" />
+          <button type="submit">Sign Up</button>
         </form>
         <p>
           Already have an account?{" "}
