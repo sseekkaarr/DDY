@@ -1,78 +1,143 @@
 .authContainer {
+  display: flex;
+  height: 100vh;
+
+  .leftSection,
+  .rightSection {
+    flex: 1;
     display: flex;
-    height: 100vh;
-  
-    .leftSection,
-    .rightSection {
-      flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    h1,
+    h2 {
+      margin: 0;
+      font-weight: bold;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+
+  .leftSection {
+    background: linear-gradient(0deg, #363f72, #6677d8, #3e4883);
+    color: white;
+
+    h1 {
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+
+    img {
+      margin-top: 15px;
+      cursor: pointer;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .rightSection {
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-  
-      h1, h2 {
-        margin: 0;
-        font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
+      width: 350px;
+      gap: 20px;
+
+      input {
+        padding: 15px;
+        border: 1px solid #a48765;
+        border-radius: 25px;
+        font-size: 14px;
       }
-    }
-  
-    .leftSection {
-      background: linear-gradient(0deg, #363f72, #6677d8, #3e4883);
-      color: white;
-  
-      h1 {
-        margin-bottom: 20px; /* Tambahkan jarak */
-        margin-top: 0; /* Pastikan tidak ada margin dari atas */
-      }
-  
-      img {
-        margin-top: 40px; /* Atur jarak logo */
+
+      button {
+        background-color: #4e5ba6;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 25px;
         cursor: pointer;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
       }
     }
-  
-    .rightSection {
-      h2 {
-        margin-bottom: 20px; /* Pastikan jaraknya serupa dengan h1 di leftSection */
-      }
-  
-      form {
-        display: flex;
-        flex-direction: column;
-        width: 350px;
-        gap: 20px;
-  
-        input {
-          padding: 15px;
-          border: 1px solid #a48765;
-          border-radius: 25px;
-          font-size: 14px;
-        }
-  
-        button {
-          background-color: #4e5ba6;
-          color: white;
-          padding: 15px;
-          border: none;
-          border-radius: 25px;
-          cursor: pointer;
-          font-size: 18px;
-          font-family: 'Montserrat', sans-serif;
-          font-weight: bold;
-        }
-      }
-  
-      p {
-        margin-top: 20px;
-  
-        span {
-          color: #4e5ba6;
-          cursor: pointer;
-          text-decoration: underline;
-        }
+
+    p {
+      margin-top: 20px;
+
+      span {
+        color: #4e5ba6;
+        cursor: pointer;
+        text-decoration: underline;
       }
     }
   }
-  
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .leftSection {
+      height: 50%;
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+
+    .rightSection {
+      height: 50%;
+      h2 {
+        font-size: 1.5rem; 
+      }
+
+      form {
+        width: 90%; 
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .leftSection {
+      h1 {
+        font-size: 1.2rem; 
+      }
+      h2 {
+        font-size: 1rem;
+      }
+
+      img {
+        max-width: 80%; 
+      }
+    }
+
+    .rightSection {
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      form {
+        gap: 15px;
+        input {
+          padding: 10px;
+          font-size: 12px;
+        }
+
+        button {
+          padding: 10px;
+          font-size: 14px;
+        }
+      }
+
+      p {
+        font-size: 0.9rem; 
+      }
+    }
+  }
+}
