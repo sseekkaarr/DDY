@@ -1,6 +1,12 @@
 .authContainer {
   display: flex;
   height: 100vh;
+  flex-direction: row; /* Default direction */
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Atur ulang ke kolom untuk mobile */
+    height: auto;
+  }
 
   .leftSection,
   .rightSection {
@@ -11,27 +17,36 @@
     align-items: center;
     padding: 20px;
 
-    h1,
-    h2 {
+    @media (max-width: 768px) {
+      flex: none;
+      padding: 10px;
+      width: 100%; /* Pastikan elemen memenuhi lebar */
+    }
+
+    h1, h2 {
       margin: 0;
       font-weight: bold;
-      font-family: "Montserrat", sans-serif;
+      font-family: 'Montserrat', sans-serif;
+
+      @media (max-width: 768px) {
+        font-size: 1.5rem; /* Perkecil font untuk mobile */
+      }
     }
   }
 
   .leftSection {
     background: linear-gradient(0deg, #363f72, #6677d8, #3e4883);
     color: white;
+    text-align: center;
 
     h1 {
       margin-bottom: 20px;
-      margin-top: 0;
     }
 
     img {
-      margin-top: 15px;
+      margin-top: 20px;
       cursor: pointer;
-      max-width: 100%;
+      max-width: 80%; /* Sesuaikan ukuran logo */
       height: auto;
     }
   }
@@ -44,14 +59,19 @@
     form {
       display: flex;
       flex-direction: column;
-      width: 350px;
-      gap: 20px;
+      width: 100%; /* Ubah ke 100% untuk mobile */
+      max-width: 350px; /* Tetap gunakan batas maksimum */
+      gap: 15px;
 
       input {
         padding: 15px;
         border: 1px solid #a48765;
         border-radius: 25px;
         font-size: 14px;
+
+        @media (max-width: 768px) {
+          font-size: 12px; /* Perkecil font untuk input */
+        }
       }
 
       button {
@@ -62,81 +82,23 @@
         border-radius: 25px;
         cursor: pointer;
         font-size: 18px;
-        font-family: "Montserrat", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-weight: bold;
+
+        @media (max-width: 768px) {
+          font-size: 16px; /* Perkecil font untuk mobile */
+        }
       }
     }
 
     p {
       margin-top: 20px;
+      text-align: center;
 
       span {
         color: #4e5ba6;
         cursor: pointer;
         text-decoration: underline;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    .leftSection {
-      height: 50%;
-      h1 {
-        font-size: 1.5rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-    }
-
-    .rightSection {
-      height: 50%;
-      h2 {
-        font-size: 1.5rem; 
-      }
-
-      form {
-        width: 90%; 
-      }
-    }
-  }
-
-  @media (max-width: 480px) {
-    .leftSection {
-      h1 {
-        font-size: 1.2rem; 
-      }
-      h2 {
-        font-size: 1rem;
-      }
-
-      img {
-        max-width: 80%; 
-      }
-    }
-
-    .rightSection {
-      h2 {
-        font-size: 1.2rem;
-      }
-
-      form {
-        gap: 15px;
-        input {
-          padding: 10px;
-          font-size: 12px;
-        }
-
-        button {
-          padding: 10px;
-          font-size: 14px;
-        }
-      }
-
-      p {
-        font-size: 0.9rem; 
       }
     }
   }
