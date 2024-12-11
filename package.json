@@ -2,8 +2,11 @@
   "dependencies": {
     "@fontsource/lora": "^5.1.0",
     "@fontsource/montserrat": "^5.1.0",
+    "@prisma/client": "^6.0.1",
+    "bcryptjs": "^2.4.3",
     "next": "^15.0.3",
     "next-auth": "^4.24.10",
+    "prisma": "^6.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sass": "^1.81.0",
@@ -16,6 +19,7 @@
     "lint": "next lint"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/next-auth": "^3.13.0",
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",

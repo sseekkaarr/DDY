@@ -47,18 +47,25 @@ const Signup = () => {
       return;
     }
 
-    const response = await fetch("/api/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
-    });
+    // Panggil API untuk menyimpan data pengguna
+    try {
+      console.log("Data sent to API:", { name, email, password });
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
 
-    if (response.ok) {
-      alert("Signup successful! Redirecting to login...");
-      router.push("/login");
-    } else {
-      const error = await response.json();
-      alert("Signup failed: " + error.message);
+      if (response.ok) {
+        alert("Signup successful! Redirecting to login...");
+        router.push("/login");
+      } else {
+        const error = await response.json();
+        alert("Signup failed: " + error.message);
+      }
+    } catch (err) {
+      console.error("Error during signup:", err);
+      alert("An unexpected error occurred. Please try again.");
     }
   };
 

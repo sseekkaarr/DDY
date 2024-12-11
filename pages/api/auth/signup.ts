@@ -1,11 +1,29 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getUsers, addUser } from "./usersData";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+const prisma = new PrismaClient();
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    const { name, email, password } = req.body;
+    let { name, email, password } = req.body;
 
-    // Validasi input
+    // Tambahkan parser manual jika diperlukan
+    if (typeof req.body === "string") {
+      try {
+        const parsedBody = JSON.parse(req.body);
+        name = parsedBody.name;
+        email = parsedBody.email;
+        password = parsedBody.password;
+      } catch (error) {
+        console.error("JSON parsing error:", error);
+        return res.status(400).json({ message: "Invalid JSON format." });
+      }
+    }
+
+    console.log("Parsed Request Body:", { name, email, password });
+
+    // Validasi Input
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required." });
     }
@@ -19,18 +37,33 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(400).json({ message: "Password must be at least 6 characters long." });
     }
 
-    const users = getUsers();
+    try {
+      // Cek apakah email sudah ada
+      const existingUser = await prisma.user.findUnique({
+        where: { email },
+      });
 
-    // Cek apakah email sudah terdaftar
-    if (users.find((u) => u.email === email)) {
-      return res.status(400).json({ message: "Email is already registered." });
+      if (existingUser) {
+        return res.status(400).json({ message: "Email is already registered." });
+      }
+
+      // Hash password sebelum disimpan
+      const hashedPassword = bcrypt.hashSync(password, 10);
+
+      // Simpan user baru ke database
+      const newUser = await prisma.user.create({
+        data: {
+          name,
+          email,
+          password: hashedPassword,
+        },
+      });
+
+      return res.status(201).json({ message: "User registered successfully.", user: newUser });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Internal server error." });
     }
-
-    // Tambahkan user baru ke database dummy
-    const newUser = { id: users.length + 1, name, email, password };
-    addUser(newUser);
-
-    return res.status(201).json({ message: "User registered successfully." });
   }
 
   res.setHeader("Allow", ["POST"]);

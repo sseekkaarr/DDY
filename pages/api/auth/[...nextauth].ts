@@ -1,6 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getUsers } from "./usersData"; // Import database dummy
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+
+const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -11,19 +14,20 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const users = getUsers();
+        if (!credentials) return null;
 
-        // Validasi user berdasarkan email dan password
-        const user = users.find(
-          (u) => u.email === credentials?.email && u.password === credentials?.password
-        );
+        // Cari pengguna berdasarkan email
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
 
-        if (user) {
-          // Return user object jika ditemukan
-          return { id: String(user.id), name: user.name, email: user.email }; // Pastikan id berupa string
+        // Validasi password
+        if (user && bcrypt.compareSync(credentials.password, user.password)) {
+          // Jika valid, return data user
+          return { id: String(user.id), name: user.name, email: user.email };
         }
 
-        // Return null jika user tidak ditemukan
+        // Jika tidak valid, return null
         return null;
       },
     }),
@@ -33,6 +37,23 @@ export const authOptions: NextAuthOptions = {
   },
   jwt: {
     secret: process.env.JWT_SECRET || "default_secret", // Gunakan secret dari environment
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id as string; // Pastikan id berupa string
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user = {
+          ...session.user,
+          id: token.id as string, // Pastikan id berupa string
+        };
+      }
+      return session;
+    },
   },
   pages: {
     signIn: "/login", // Redirect ke halaman login
