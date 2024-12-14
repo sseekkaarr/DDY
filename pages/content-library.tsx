@@ -5,7 +5,7 @@ const ContentLibrary = () => {
     <>
       <Header />
       <main>
-        <h1>Contant Library</h1>
+        <h1>Content Library</h1>
       </main>
     </>
   );

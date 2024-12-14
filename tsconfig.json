@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "types/**/*.d.ts"
-  ],
+, "testPrisma.js", "testPostgresConnection.js"  ],
   "exclude": [
     "node_modules"
   ]
