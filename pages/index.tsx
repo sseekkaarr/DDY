@@ -48,7 +48,7 @@ const Home = () => {
               <p>Log activities, track mood, and see your growth.</p>
             </div>
             <div className={styles.card}>
-              <Image src="/img/personalizedSelfcare.png" alt="Personalized Self-Care" width={100} height={100} />
+              <Image src="/img/personalizedSelfCare.png" alt="Personalized Self-Care" width={100} height={100} />
               <h3>Personalized Self-Care Solutions</h3>
               <p>Activities tailored to your needs. Take a quick quiz and get recommendations.</p>
             </div>
