@@ -68,19 +68,19 @@ const Home = () => {
               <Image src="/img/article1.png" alt="Read 1" width={300} height={200} />
               <h3>The Power of Mindfulness: Simple Practices for Daily Peace</h3>
               <p>Discover how mindfulness can transform your daily life. Learn easy practices to reduce stress, improve focus, and enhance overall well-being.</p>
-              <button>Read more</button>
+              <button onClick={() => router.push('/content-library')}>Read more</button>
             </article>
             <article>
               <Image src="/img/article2.png" alt="Read 2" width={300} height={200} />
               <h3>Creative Outlets for Stress Relief: Why Art Matters</h3>
               <p>Unleash your creativity to cope with stress. From painting to journaling, explore activities that help you relax and express yourself.</p>
-              <button>Read more</button>
+              <button onClick={() => router.push('/content-library')}>Read more</button>
             </article>
             <article>
               <Image src="/img/article3-1.png" alt="Read 3" width={300} height={200} />
               <h3>The Science of Self-Care: Why Rest is Productive</h3>
               <p>Self-care is more than just a buzzword. Dive into the science behind rest and how it boosts your productivity and mental health.</p>
-              <button>Read more</button>
+              <button onClick={() => router.push('/content-library')}>Read more</button>
             </article>
           </div>
         </section>

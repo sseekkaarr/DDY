@@ -1,26 +1,30 @@
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { signOut, useSession } from "next-auth/react";
 import styles from "../styles/Profile.module.scss";
+import Link from 'next/link';
 
 const Profile = () => {
   const { data: session } = useSession();
+  const [recommendations, setRecommendations] = useState([]);
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      // Ambil data rekomendasi berdasarkan email user
+      const storedRecommendations = localStorage.getItem(
+        `selfCareRecommendations_${session.user.email}`
+      );
+      if (storedRecommendations) {
+        setRecommendations(JSON.parse(storedRecommendations));
+      } else {
+        setRecommendations([]);
+      }
+    }
+  }, [session?.user?.email]);
 
   if (!session) {
     return <p>Loading...</p>;
   }
-
-  // Dummy data for recommendations
-  const recommendations = [
-    { name: "Mindfulness Meditation", category: "Mindfulness", duration: "10-15 minutes" },
-    { name: "Yoga Stretch", category: "Physical Activity", duration: "15-30 minutes" },
-    { name: "Creative Writing", category: "Creativity", duration: "30-45 minutes" },
-  ];
-
-  // Dummy data for progress tracker
-  const progressData = [
-    { date: "2024-12-10", activity: "Yoga Stretch", status: "Completed" },
-    { date: "2024-12-11", activity: "Mindfulness Meditation", status: "Skipped" },
-  ];
 
   return (
     <>
@@ -29,55 +33,54 @@ const Profile = () => {
         {/* Section: User Information */}
         <section className={styles.userInfo}>
           <h1 className={styles.profileTitle}>Welcome, {session.user?.name}!</h1>
+          <img
+            src="/img/ava.png"
+            alt="User Avatar"
+            className={styles.avatar}
+          />
           <p className={styles.profileEmail}>Email: {session.user?.email}</p>
-          <button
-            className={styles.logoutButton}
-            onClick={() =>
-              signOut({
-                callbackUrl: "/login",
-              })
-            }
-          >
-            Logout
-          </button>
         </section>
 
-        {/* Section: Self-Care Recommendations */}
-        <section className={styles.recommendations}>
-          <h2>Your Self-Care Recommendations</h2>
-          <div className={styles.recommendationList}>
-            {recommendations.map((activity, index) => (
+       {/* Section: Self-Care Recommendations */}
+      <section className={styles.recommendations}>
+        <h2>Your Self-Care Recommendations</h2>
+        <div className={styles.recommendationList}>
+          {recommendations.length > 0 ? (
+            recommendations.map((activity, index) => (
               <div key={index} className={styles.recommendationCard}>
                 <h3>{activity.name}</h3>
                 <p>Category: {activity.category}</p>
-                <p>Duration: {activity.duration}</p>
               </div>
-            ))}
-          </div>
-        </section>
+            ))
+          ) : (
+            <p className={styles.noRecommendations}>
+              No recommendations yet. Complete the{" "}
+              <Link href="/quiz" passHref>
+                <span className={styles.quizLink}>quiz</span>
+              </Link>{" "}
+              to get your recommendations!
+            </p>
+          )}
+        </div>
+      </section>
 
-        {/* Section: Progress Tracker */}
-        <section className={styles.progressTracker}>
-          <h2>Progress Tracker</h2>
-          <table className={styles.progressTable}>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Activity</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {progressData.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.date}</td>
-                  <td>{item.activity}</td>
-                  <td>{item.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
+
+        {/* Section: Logout Button */}
+        <div className={styles.logoutContainer}>
+          <button
+            className={styles.logoutButton}
+            onClick={() => {
+              localStorage.removeItem(
+                `selfCareRecommendations_${session.user.email}`
+              ); // Hapus data rekomendasi user
+              signOut({
+                callbackUrl: "/login",
+              });
+            }}
+          >
+            Logout
+          </button>
+        </div>
       </main>
     </>
   );

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useSession } from 'next-auth/react'; // Import session
 import styles from '../styles/Quiz.module.scss';
 import Header from '../components/Header';
 import Link from 'next/link';
 
 const Quiz = () => {
+  const { data: session } = useSession();
+
   const questions = [
     {
       question: 'How are you feeling right now?',
@@ -150,8 +153,22 @@ const Quiz = () => {
       }
       return false;
     });
+
+    const recommendations = filteredActivities.map((activity) => ({
+      name: activity.name,
+      category: selectedCategory,
+      duration: activity.duration,
+    }));
   
     setRecommendedActivities(filteredActivities.map((activity) => activity.name));
+
+    if (session?.user?.email) {
+      localStorage.setItem(
+        `selfCareRecommendations_${session.user.email}`,
+        JSON.stringify(filteredActivities)
+      );
+    }
+
   };
   
 

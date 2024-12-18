@@ -259,6 +259,10 @@
           border: none;
           border-radius: 50px;
           cursor: pointer;
+          
+          &:hover {
+            background-color: #6677d8;
+          }
         }
       }
     }
