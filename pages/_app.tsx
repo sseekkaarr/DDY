@@ -7,6 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <Head>
+        <title>Daily Dose of You</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
