@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { category_id } = req.query;
 
       if (category_id) {
-        // Fetch activities by category_id
         const activities = await prisma.selfCareActivities.findMany({
           where: { category_id: category_id as string },
           select: {
@@ -20,7 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         res.status(200).json(activities);
       } else {
-        // Fetch unique categories
         const categories = await prisma.selfCareActivities.findMany({
           distinct: ["category_id"],
           select: { category_id: true, category: true },

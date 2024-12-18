@@ -3,11 +3,10 @@ import Header from "../components/Header";
 import Link from "next/link";
 import styles from "../styles/ActivityCatalog.module.scss";
 
-// Tipe data untuk kategori
 interface Category {
   category_id: string;
   category: string;
-  category_image: string; // Tambahkan properti gambar
+  category_image: string;
 }
 
 const ActivityCatalog = () => {
@@ -16,7 +15,6 @@ const ActivityCatalog = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simpan gambar di kategori secara lokal (jika API belum menyediakannya)
     const localCategories = [
       { category_id: "PHY", category: "Physical Activities", category_image: "/img/physical.png" },
       { category_id: "REL", category: "Mental Relaxation", category_image: "/img/relaxation.png" },

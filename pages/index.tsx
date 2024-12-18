@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.scss';
 import Header from '../components/Header';
 
 const Home = () => {
-  const { data: session } = useSession(); // Cek status login
+  const { data: session } = useSession();
   const router = useRouter();
   const featuresRef = useRef<HTMLDivElement>(null);
 
@@ -17,10 +17,8 @@ const Home = () => {
 
   const handleQuizRedirect = () => {
     if (session) {
-      // Jika user sudah login, redirect ke halaman quiz
       router.push("/quiz");
     } else {
-      // Jika belum login, tampilkan alert
       alert("Please log in to take the quiz.");
     }
   };
@@ -29,7 +27,6 @@ const Home = () => {
     <>
       <Header />
       <main>
-        {/* Landing Section */}
         <section className={styles.landing}>
           <div className={styles.textContainer}>
             <h1>Take Charge of Your Well-being, One Step at a Time</h1>
@@ -38,7 +35,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Features Overview */}
         <section ref={featuresRef} className={styles.features}>
           <h2>Features Overview</h2>
           <div className={styles.featureCards}>
@@ -60,7 +56,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Mindful Reads */}
         <section className={styles.mindfulReads}>
           <h2>Mindful Reads</h2>
           <div className={styles.articles}>
@@ -85,7 +80,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Quiz Section */}
         <section className={styles.quiz}>
           <h2>Take our quick assessment to discover what works best for you!</h2>
           <button onClick={handleQuizRedirect}>Take the Quiz</button>

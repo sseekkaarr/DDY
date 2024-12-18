@@ -7,7 +7,6 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   if (session) {
-    // Redirect ke halaman Profile jika sudah login
     return {
       redirect: {
         destination: "/profile",
@@ -30,7 +29,6 @@ const Signup = () => {
     const email = (e.target as any).email.value;
     const password = (e.target as any).password.value;
 
-    // Validasi Input
     if (!name || !email || !password) {
       alert("All fields are required!");
       return;
@@ -47,7 +45,6 @@ const Signup = () => {
       return;
     }
 
-    // Panggil API untuk menyimpan data pengguna
     try {
       console.log("Data sent to API:", { name, email, password });
       const response = await fetch("/api/auth/signup", {

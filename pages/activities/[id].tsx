@@ -12,13 +12,12 @@ interface Activity {
 
 const ActivityDetail = () => {
   const router = useRouter();
-  const { id } = router.query; // Mengambil parameter kategori ID dari URL
+  const { id } = router.query; 
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
 
-  // Mapping kategori lokal
   const categoryMapping: { [key: string]: string } = {
     PHY: "Physical Activities",
     REL: "Mental Relaxation",
@@ -40,7 +39,7 @@ const ActivityDetail = () => {
           return response.json();
         })
         .then((data: Activity[]) => {
-          setActivities(data.slice(0, 5)); // Batasi hanya 5 aktivitas
+          setActivities(data.slice(0, 5));
           setIsLoading(false);
         })
         .catch((err) => {

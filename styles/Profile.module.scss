@@ -47,8 +47,8 @@
 
 .logoutContainer {
   display: flex;
-  justify-content: center; // Pusatkan horizontal
-  margin-top: 2rem; // Beri jarak dari elemen sebelumnya
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .logoutButton {
@@ -103,7 +103,6 @@
     font-size: 0.9rem;
   }
 
-  /* Gradient Hover Effect */
   &:hover {
     background: linear-gradient(to right, #C84449, #4E5BA6);
     color: white;
@@ -119,13 +118,13 @@
 }
 
 .noRecommendations {
-  text-align: center; // Rata tengah
-  font-family: "Lora", serif; // Font Lora
-  color: #666; // Warna teks
-  font-size: 1.1rem; // Ukuran font
-  margin-top: 1rem; // Jarak dari elemen sebelumnya
-  width: 100%; // Pastikan elemen menempati seluruh lebar parent
-  display: block; // Jadikan elemen blok agar align center bekerja
+  text-align: center; 
+  font-family: "Lora", serif; 
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 1rem; 
+  width: 100%; 
+  display: block;
 }
 
 

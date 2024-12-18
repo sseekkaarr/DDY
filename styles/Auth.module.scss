@@ -1,10 +1,10 @@
 .authContainer {
   display: flex;
   height: 100vh;
-  flex-direction: row; /* Default direction */
+  flex-direction: row;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Atur ulang ke kolom untuk mobile */
+    flex-direction: column;
     height: auto;
   }
 
@@ -20,7 +20,7 @@
     @media (max-width: 768px) {
       flex: none;
       padding: 10px;
-      width: 100%; /* Pastikan elemen memenuhi lebar */
+      width: 100%;
     }
 
     h1, h2 {
@@ -29,7 +29,7 @@
       font-family: 'Montserrat', sans-serif;
 
       @media (max-width: 768px) {
-        font-size: 1.5rem; /* Perkecil font untuk mobile */
+        font-size: 1.5rem;
       }
     }
   }
@@ -46,7 +46,7 @@
     img {
       margin-top: 20px;
       cursor: pointer;
-      max-width: 80%; /* Sesuaikan ukuran logo */
+      max-width: 80%;
       height: auto;
     }
   }
@@ -59,8 +59,8 @@
     form {
       display: flex;
       flex-direction: column;
-      width: 100%; /* Ubah ke 100% untuk mobile */
-      max-width: 350px; /* Tetap gunakan batas maksimum */
+      width: 100%;
+      max-width: 350px;
       gap: 15px;
 
       input {
@@ -70,7 +70,7 @@
         font-size: 14px;
 
         @media (max-width: 768px) {
-          font-size: 12px; /* Perkecil font untuk input */
+          font-size: 12px;
         }
       }
 
@@ -86,7 +86,7 @@
         font-weight: bold;
 
         @media (max-width: 768px) {
-          font-size: 16px; /* Perkecil font untuk mobile */
+          font-size: 16px;
         }
       }
     }

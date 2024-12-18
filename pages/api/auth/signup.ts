@@ -8,7 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === "POST") {
     let { name, email, password } = req.body;
 
-    // Tambahkan parser manual jika diperlukan
     if (typeof req.body === "string") {
       try {
         const parsedBody = JSON.parse(req.body);
@@ -23,7 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     console.log("Parsed Request Body:", { name, email, password });
 
-    // Validasi Input
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required." });
     }
@@ -38,7 +36,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      // Cek apakah email sudah ada
       const existingUser = await prisma.user.findUnique({
         where: { email },
       });
@@ -47,10 +44,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: "Email is already registered." });
       }
 
-      // Hash password sebelum disimpan
       const hashedPassword = bcrypt.hashSync(password, 10);
 
-      // Simpan user baru ke database
       const newUser = await prisma.user.create({
         data: {
           name,

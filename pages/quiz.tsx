@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react'; // Import session
+import { useSession } from 'next-auth/react';
 import styles from '../styles/Quiz.module.scss';
 import Header from '../components/Header';
 import Link from 'next/link';

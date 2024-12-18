@@ -11,7 +11,7 @@
 
 .categoryList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grid layout dengan responsive card */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   justify-content: center;
 }
@@ -34,7 +34,7 @@
 .categoryImage {
   width: 100%;
   height: 150px;
-  object-fit: cover; /* Gambar akan selalu terlihat penuh di dalam card */
+  object-fit: cover;
   border-bottom: 1px solid #ddd;
 }
 

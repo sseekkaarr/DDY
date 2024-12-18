@@ -8,7 +8,6 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   if (session) {
-    // Redirect ke halaman Profile jika sudah login
     return {
       redirect: {
         destination: "/profile",
@@ -39,7 +38,7 @@ const Login = () => {
     if (result?.error) {
       alert("Login failed: " + result.error);
     } else {
-      router.push("/"); // Redirect to homepage on success
+      router.push("/");
     }
   };
 

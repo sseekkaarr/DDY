@@ -10,7 +10,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (session?.user?.email) {
-      // Ambil data rekomendasi berdasarkan email user
       const storedRecommendations = localStorage.getItem(
         `selfCareRecommendations_${session.user.email}`
       );
@@ -30,7 +29,6 @@ const Profile = () => {
     <>
       <Header />
       <main className={styles.profileContainer}>
-        {/* Section: User Information */}
         <section className={styles.userInfo}>
           <h1 className={styles.profileTitle}>Welcome, {session.user?.name}!</h1>
           <img
@@ -41,7 +39,6 @@ const Profile = () => {
           <p className={styles.profileEmail}>Email: {session.user?.email}</p>
         </section>
 
-       {/* Section: Self-Care Recommendations */}
       <section className={styles.recommendations}>
         <h2>Your Self-Care Recommendations</h2>
         <div className={styles.recommendationList}>
@@ -65,14 +62,13 @@ const Profile = () => {
       </section>
 
 
-        {/* Section: Logout Button */}
         <div className={styles.logoutContainer}>
           <button
             className={styles.logoutButton}
             onClick={() => {
               localStorage.removeItem(
                 `selfCareRecommendations_${session.user.email}`
-              ); // Hapus data rekomendasi user
+              );
               signOut({
                 callbackUrl: "/login",
               });

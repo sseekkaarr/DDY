@@ -11,11 +11,11 @@
 
 .activityList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 kolom */
-  gap: 20px; /* Jarak antar-kotak */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   list-style: none;
   padding: 0;
-  justify-content: center; /* Agar item tetap berada di tengah */
+  justify-content: center;
 }
 
 .activityItem {
@@ -25,13 +25,13 @@
   background-color: #f9f9f9;
   text-align: center;
   transition: all 0.3s ease-in-out;
-  height: 200px; /* Tinggi kotak seragam */
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   &:hover {
-    transform: scale(1.05); /* Sedikit membesar saat hover */
+    transform: scale(1.05);
     border-color: #0070f3;
   }
 }
@@ -60,11 +60,11 @@
 
   p {
     margin: 0;
-    line-height: 1.6; /* Untuk memperbaiki jarak antar-teks */
+    line-height: 1.6;
   }
 
   p + p {
-    margin-top: 10px; /* Jarak khusus untuk duration */
+    margin-top: 10px;
   }
 }
 
@@ -80,15 +80,14 @@
   }
 }
 
-/* Responsive untuk layar kecil */
 @media (max-width: 768px) {
   .activityList {
-    grid-template-columns: repeat(2, 1fr); /* Jadi 2 kolom */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .activityList {
-    grid-template-columns: repeat(1, 1fr); /* Jadi 1 kolom */
+    grid-template-columns: repeat(1, 1fr);
   }
 }

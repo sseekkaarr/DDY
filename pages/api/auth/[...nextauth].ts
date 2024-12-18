@@ -16,32 +16,28 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials) return null;
 
-        // Cari pengguna berdasarkan email
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
 
-        // Validasi password
         if (user && bcrypt.compareSync(credentials.password, user.password)) {
-          // Jika valid, return data user
           return { id: String(user.id), name: user.name, email: user.email };
         }
 
-        // Jika tidak valid, return null
         return null;
       },
     }),
   ],
   session: {
-    strategy: "jwt", // Gunakan JWT untuk menyimpan sesi
+    strategy: "jwt",
   },
   jwt: {
-    secret: process.env.JWT_SECRET || "default_secret", // Gunakan secret dari environment
+    secret: process.env.JWT_SECRET || "default_secret",
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id as string; // Pastikan id berupa string
+        token.id = user.id as string;
       }
       return token;
     },
@@ -49,14 +45,14 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.user = {
           ...session.user,
-          id: token.id as string, // Pastikan id berupa string
+          id: token.id as string,
         };
       }
       return session;
     },
   },
   pages: {
-    signIn: "/login", // Redirect ke halaman login
+    signIn: "/login",
   },
 };
 
